@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Delicious Deliveries</title>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5500/templates/indexxx.html" onclick="showSection('home')">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/about.html" onclick="showSection('about')">About Us</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/menu.html" onclick="showSection('menu')">Menu</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/cart.html" onclick="showSection('cart')">Cart</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/contact.html" onclick="showSection('contact')">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#e5cbe1; /* Light background for contrast */
+        }
+        /* Header Styles */
+        header {
+            background-color: #2a2a2a; /* Green background for the header */
+            color: white; /* White text color */
+            padding: 15px 0; /* Padding above and below the header */
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            list-style-type: none; /* Remove bullet points from the list */
+            padding: 0; /* Remove default padding */
+            text-align: center; /* Center the navigation items */
+        }
+
+        nav ul li {
+            display: inline; /* Display list items in a row */
+            margin: 0 20px; /* Space between navigation items */
+        }
+
+        nav ul li a {
+            color: white; /* White text color for links */
+            text-decoration: none; /* Remove underline from links */
+            font-weight: bold; /* Bold text for links */
+            transition: color 0.3s; /* Smooth transition for hover effect */
+        }
+
+        nav ul li a:hover {
+            color: #FFD700; /* Gold color on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block; /* Stack navigation items on mobile */
+                margin: 10px 0; /* Space between items */
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #60056a; /* Green color for main heading */
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #cf239c; /* Dark color for subheadings */
+            font-size: 2em; /* Font size for subheadings */
+            margin-top: 20px; /* Space above the subheading */
+            margin-bottom: 10px; /* Space below the subheading */
+        }
+        p {
+            color: #100f0f; /* Dark gray for paragraph text */
+            line-height: 1.6; /* Improved line height for readability */
+            margin-bottom: 15px; /* Space below paragraphs */
+        }
+
+        ul {
+            list-style-type: disc; /* Bullet points for lists */
+            padding-left: 20px; /* Indent for list items */
+        }
+
+        ul li {
+            margin: 5px 0; /* Space between list items */
+            color: #100a11; /* Dark gray for list items */
+        }
+
+        /* About Us Section Styles */
+        #about {
+            background-image: url('../static/images/ground4.jpeg'); /* Add background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Fix the background image */
+            padding: 20px;
+            border-radius: 8px; /* Optional: Add border radius for rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better aesthetics */
+            background-color: #fff; /* White background for the About Us section */
+            margin: 20px; /* Margin around the section */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.2em; /* Smaller font size for mobile */
+            }
+
+            p {
+                font-size: 0.9em; /* Slightly smaller font size for paragraphs on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="about">
+        <h1>About Us</h1>
+        <h2>Our Values</h2>
+        <ul>
+            <li><strong>Quality:</strong> We partner with top-rated restaurants to guarantee fresh and delicious meals.</li>
+            <li><strong>Convenience:</strong> Order from the comfort of your home and enjoy quick delivery.</li>
+            <li><strong>Customer Satisfaction:</strong> Your happiness is our priority; we strive to exceed your expectations.</li>
+        </ul>
+
+        <h2>What We Offer</h2>
+        <p>Our platform allows you to:</p>
+        <ul>
+            <li>Browse a wide variety of menus.</li>
+            <li>Customize your orders to suit your taste and dietary needs.</li>
+            <li>Track your order in real-time for peace of mind.</li>
+            <li>Enjoy exclusive deals and discounts on your favorite meals.</li>
+        </ul>
+
+        <h2>Join Us</h2>
+        <p>Experience the joy of hassle-free dining with <strong>Delicious Deliveries</strong>. Whether you're craving pizza, biriyani or a healthy salad, we've got you covered!</p>
+    </div>
+</body>
+</html>

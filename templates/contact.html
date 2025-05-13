@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Contact Us</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/contact.css">
+</head>
+<body>
+    <header> 
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5500/templates/indexxx.html" onclick="showSection('home')">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/about.html" onclick="showSection('about')">About Us</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/menu.html" onclick="showSection('menu')">Menu</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/cart.html" onclick="showSection('cart')">Cart</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/contact.html" onclick="showSection('contact')">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Contact Us</h1>
+    <main>
+        <section class="contact-info">
+            <h2>Get in Touch</h2>
+            <p>If you have any questions, feel free to reach out to us!</p>
+            <ul>
+                <li><strong>Email:</strong> support@fooddelivery.com</li>
+                <li><strong>Phone:</strong> +91 7901366577</li>
+                <li><strong>Address:</strong> 4th Town, Visakhapatm, Andhrapradesh, INDIA</li>
+            </ul>
+        </section>
+        <section class="contact-form">
+            <h2>Contact Form</h2>
+            <form id="contactForm" action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="responseMessage"></p>
+        </section>
+    </main>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+    
+            // Get values from form fields
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+    
+            // Create a contact object
+            const contactInfo = {
+                name,
+                email,
+                message
+            };
+    
+            // Store the contact information in local storage
+            localStorage.setItem('contactInfo', JSON.stringify(contactInfo));
+    
+            // Display a response message
+            document.getElementById('responseMessage').innerText = 'Thank you for contacting us! Your response has been submitted. We will get back to you soon.';
+    
+            // Clear the form fields
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+    <script src="contact.js"></script>
+</body>
+</html>

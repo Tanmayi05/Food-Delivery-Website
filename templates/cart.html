@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/cart.css">
+    <title>Your Cart</title>
+    <style>
+        form label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form select {
+            display: block;
+            width: 180%; /* Set a fixed width */
+            max-width: 500px; /* Optional: Set a maximum width */
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensure consistent box sizing */
+        }
+
+        form button[type="submit"],
+        #next-button {
+            background-color: #6259e5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        form button[type="submit"]:hover,
+        #next-button:hover {
+            background-color: #4e3de5;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #28a745; /* Success green */
+            color: white;
+            padding: 20px 30px;
+            border-radius: 5px;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5500/templates/indexxx.html" onclick="showSection('home')">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/about.html" onclick="showSection('about')">About Us</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/menu.html" onclick="showSection('menu')">Menu</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/cart.html" onclick="showSection('cart')">Cart</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/contact.html" onclick="showSection('contact')">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Cart</h1>
+    <main>
+        <section class="cart">
+            <h2>Items in Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-price">Total Price: ₹0.00</p>
+            <div class="cart-actions">
+                <button class="checkout" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                <button class="continue-shopping" onclick="continueShopping()">Continue Shopping</button>
+            </div>
+        </section>
+        <section class="checkout-form" style="display: none;">
+            <h2>Checkout</h2>
+            <p id="saved-address" style="display: none;"></p>
+            <form id="checkout-form">
+                <label for="door-number">Door Number:</label>
+                <input type="text" id="door-number" name="door-number" required>
+
+                <label for="landmark">Landmark:</label>
+                <input type="text" id="landmark" name="landmark" required>
+                
+                <label for="street-name">Street Name:</label>
+                <input type="text" id="street-name" name="street-name" required>
+                
+                <label for="area">Area:</label>
+                <input type="text" id="area" name="area" required>
+                
+                <label for="district">District:</label>
+                <input type="text" id="district" name="district" required>
+                
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" required>
+                
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode" required>
+                
+                <p id="total-amount"></p>
+                
+                <button type="submit">Submit</button>
+            </form>
+            <button onclick="editAddress()">Edit Address</button>
+            <button id="next-button" style="display: none;" onclick="showPaymentMethod()">Next</button>
+        </section>
+
+        <section class="payment-method" style="display: none;">
+            <h2>Payment Method</h2>
+            <form id="payment-form">
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method" onchange="showPaymentOptions()" required>
+                    <option value="">Select Payment Method</option>
+                    <option value="cod">Cash on Delivery</option>
+                    <option value="card">Card</option>
+                </select>
+                
+                <div id="online-payment-options" style="display: none;">
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" name="card-number">
+                    
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv">
+                    
+                    <label for="expiry-date">Expiry Date:</label>
+                    <input type="text" id="expiry-date" name="expiry-date">
+                    
+                </div>
+                <button type="submit">Submit Payment</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItems = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            let total = 0;
+
+            cartItems.innerHTML = '';
+            cart.forEach((cartItem, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${cartItem.item} - ₹${cartItem.price.toFixed(2)} x ${cartItem.quantity}`;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.onclick = () => removeFromCart(index);
+                li.appendChild(removeButton);
+                cartItems.appendChild(li);
+                total += cartItem.price * cartItem.quantity;
+            });
+
+            totalPriceElement.textContent = `Total Price: ₹${total.toFixed(2)}`;
+            document.getElementById('total-amount').textContent = `Total Amount: ₹${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function continueShopping() {
+            
+            window.location.href = 'http://127.0.0.1:5500/templates/menu.html';
+        }
+
+        function proceedToCheckout() {
+            document.querySelector('.cart').style.display = 'none';
+            document.querySelector('.checkout-form').style.display = 'block';
+        }
+
+        function showPaymentOptions() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            const onlinePaymentOptions = document.getElementById('online-payment-options');
+            if (paymentMethod === 'card') {
+                onlinePaymentOptions.style.display = 'block';
+            } else {
+                onlinePaymentOptions.style.display = 'none';
+            }
+        }
+
+        function editAddress() {
+            const savedAddress = JSON.parse(localStorage.getItem('savedAddress'));
+            if (savedAddress) {
+                document.getElementById('landmark').value = savedAddress.landmark;
+                document.getElementById('street-name').value = savedAddress.streetName;
+                document.getElementById('area').value = savedAddress.area;
+                document.getElementById('district').value = savedAddress.district;
+                document.getElementById('state').value = savedAddress.state;
+                document.getElementById('pincode').value = savedAddress.pincode;
+                document.querySelector('.checkout-form').style.display = 'block';
+            }
+        }
+
+        function showPaymentMethod() {
+            document.querySelector('.checkout-form').style.display = 'none';
+            document.querySelector('.payment-method').style.display = 'block';
+        }
+
+        // Load cart on page load
+        document.addEventListener('DOMContentLoaded', loadCart);
+
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const address = {
+                landmark: document.getElementById('landmark').value,
+                streetName: document.getElementById('street-name').value,
+                area: document.getElementById('area').value,
+                district: document.getElementById('district').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value
+            };
+            const combinedAddress = `${address.landmark}, ${address.streetName}, ${address.area}, ${address.district}, ${address.state}, ${address.pincode}`;
+            localStorage.setItem('savedAddress', JSON.stringify(address));
+            document.getElementById('saved-address').textContent = `Delivery Address: ${combinedAddress}`;
+            document.getElementById('saved-address').style.display = 'block';
+            document.getElementById('checkout-form').reset();
+            document.getElementById('next-button').style.display = 'block';
+            alert(`Address saved successfully! Delivery Address: ${combinedAddress}`);
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const paymentMethod = document.getElementById('payment-method').value;
+            if (!paymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+
+            const paymentData = {
+                paymentMethod,
+            };
+
+            if (paymentMethod === 'card') {
+                paymentData.cardNumber = document.getElementById('card-number').value;
+                paymentData.cvv = document.getElementById('cvv').value;
+                paymentData.expiryDate = document.getElementById('expiry-date').value;
+
+                if (!paymentData.cardNumber || !paymentData.cvv || !paymentData.expiryDate) {
+                    alert('Please fill in all card details.');
+                    return;
+                }
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/submit-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(paymentData),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message);
+                    window.location.href = 'http://127.0.0.1:5500/templates/indexxx.html'; // Redirect to homepage
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error('Error submitting payment:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+    <script src="../static/js/cart.js"></script>
+    <div id="order-success-popup" class="popup" style="display: none;">
+        Your order has been placed successfully!
+    </div>
+</body>
+</html>

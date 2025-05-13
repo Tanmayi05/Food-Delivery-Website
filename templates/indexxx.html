@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery Service</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <style>
+        /* Add any additional styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5cbe1;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2a2a2a;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .home-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+            background-image: url('../static/images/ground2.jpeg'); /* Add background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Fix the background image */
+            border-radius: 8px; /* Optional: Add border radius for rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better aesthetics */
+        }
+        .home-section {
+            background-image: url('../static/images/ground2.jpeg'); /* Add background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Fix the background image */
+            padding: 20px;
+            border-radius: 8px; /* Optional: Add border radius for rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better aesthetics */
+        }
+        .image-right {
+            width: 40%;
+            align-self: flex-start; /* Adjust the width as needed */
+        }
+        .image-right img {
+            width: 100%;
+            height: auto;
+            border: none;
+            display: block;
+            margin-top: 0;
+        }
+        .home-text {
+            flex: 1;
+            padding: 0 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .home-text h2 {
+            color: #de1167;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .home-text p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgb(8, 0, 12);
+        }
+        .menu-item {
+            display: none; /* Hide all menu items by default */
+        }
+        .checkout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #c25596;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .checkout-button:hover {
+            background-color: #ea34b3;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main > section');
+            sections.forEach(section => {
+                section.style.display = 'none'; // Hide all sections
+            });
+            document.getElementById(sectionId).style.display = 'block'; // Show the selected section
+        }
+
+        // Initialize the page by showing the home section
+        window.onload = function() {
+            showSection('home');
+        };
+
+        function searchMenu() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            let found = false;
+
+            menuItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category').toLowerCase();
+                if (itemCategory.includes(query)) {
+                    item.style.display = 'block';
+                    found = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (found) {
+                showSection('menu');
+            } else {
+                alert('No items found');
+            }
+        }
+
+        function navigateToMenu() {
+            window.location.href = "http://127.0.0.1:5500/templates/menu.html";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/about.html" onclick="showSection('about')">About Us</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/menu.html" onclick="showSection('menu')">Menu</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/cart.html" onclick="showSection('cart')">Cart</a></li>
+                <li><a href="http://127.0.0.1:5500/templates/contact.html" onclick="showSection('contact')">Contact Us</a></li>
+                <li>
+                    <input type="text" placeholder="Search..." id="search-bar">
+                    <button id="search-button" onclick="navigateToMenu()">Search</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="home-section active">
+            <h1><b>Welcome to Our Food Delivery Service</b></h1>
+            <h1>Delicious Food, Delivered Fast</h1>
+            <h2>Are you hungry?</h2>
+            <h3>Don't wait!!!</h3>
+            <h3>Let's start to order food now!</h3>
+            <a href="http://127.0.0.1:5500/templates/menu.html" class="checkout-button" onclick="showSection('menu')">Checkout Menu</a>
+            <div class="home-content">
+                <div class="home-text">
+                    <p>We offer a wide variety of delicious meals, desserts, and beverages delivered right to your doorstep. Whether you're craving a hearty biriyani, a refreshing ice cream, or a tasty pizza, we've got you covered.</p>
+                    <p>Our menu is designed to cater to all tastes and preferences. Browse through our categories and find your favorite dishes. Enjoy the convenience of online ordering and fast delivery.</p>
+                    <ul>
+                        <li><strong>Quality Ingredients:</strong> We use only the freshest and highest quality ingredients in our dishes.</li>
+                        <li><strong>Fast Delivery:</strong> Get your food delivered hot and fresh, right to your doorstep.</li>
+                        <li><strong>Wide Variety:</strong> From starters to desserts, we have something for everyone.</li>
+                    </ul>
+                </div>
+                <div class="image-right">
+                    <img src="../static/images/back.jpeg" alt="Image 3">
+                </div>
+            </div>
+        </section>
+        <section id="about" style="display: none;">
+            <h1>About Us</h1>
+            <p>We are dedicated to providing the best food delivery service in town. Our team works hard to ensure that your meals are prepared with the freshest ingredients and delivered promptly.</p>
+        </section>
+    </main> 
+</body>
+</html>

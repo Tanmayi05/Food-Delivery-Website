@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e5cbe1;
+}
+
+header {
+    background-color: #2a2a2a;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    height: 2cm; /* Set the height of the navbar to 2cm */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+h1 {
+    color: #60056a;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.contact-info,
+.contact-form {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1; /* Allow the containers to grow and fill the available space equally */
+    margin: 10px; /* Add margin between the containers */
+}
+
+.contact-info h2,
+.contact-form h2 {
+    color: #cf239c;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.contact-info p,
+.contact-info ul {
+    color: #100f0f;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    color: #100f0f;
+    margin-bottom: 10px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form form label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.contact-form form input[type="text"],
+.contact-form form input[type="email"],
+.contact-form form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form form button[type="submit"] {
+    background-color: #6259e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.contact-form form button[type="submit"]:hover {
+    background-color: #4e3de5;
+}
+
+#responseMessage {
+    color: #171817;
+    font-size: 16px;
+    margin-top: 20px;
+    text-align: center;
+}

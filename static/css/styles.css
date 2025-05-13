@@ -1,0 +1,164 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e5cbe1; 
+    background-image: url('../static/images/ground.jpeg'); /* Add background image */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: fixed; /* Fix the background image */
+}
+
+header {
+    background-color: #2a2a2a; /* Green header */
+    color: white;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #e9de0a; /* Gold color on hover */
+}
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    color: #ef1e07; /* Dark text for headings */
+}
+h2 {
+    color: #04707a;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+h3 {
+    color: #474c51;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+p {
+    color: #000508;
+    font-size: 5%;
+    margin-bottom: 10px;
+}
+
+section {
+    background-color: #fff; /* White background for sections */
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+form {
+    background-color: #f2f2f2; /* Light gray for form background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #08f710; /* Green button */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+ul {
+    padding-left: 20px; /* Indent for list items */
+}
+
+ul li {
+    margin: 5px 0; /* Space between list items */
+    color: #4c0767; /* Dark gray for list items */
+}
+#search-bar {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding: 5px 10px;
+    border: none;
+    background-color: white;
+    color: #39d92c;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #44d644;
+    color: white;
+}
+.search-container {
+    position: absolute;
+    top: 10px; /* Adjust vertical position */
+    right: 10px; /* Adjust horizontal position */
+    display: flex;
+    align-items: center;
+}
+input[type="text"] {
+    border-radius: 50px; /* Adjust this value for more or less rounding */
+    padding: 10px;       /* Add some padding for better aesthetics */
+    border: 1px solid #ccc; /* Border color */
+    outline: none;       /* Remove default outline */
+    width: 25%;         /* Make it responsive */
+}
+
+input[type="text"]:focus {
+    border-color: #4CAF50; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Optional: Add a shadow effect */
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.menu-item img {
+    width: 100px; /* Fixed width for images */
+    height: 100px; /* Fixed height for images */
+    border-radius: 8px;
+    margin-right: 15px;
+}
